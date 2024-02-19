@@ -1,0 +1,18 @@
+class Solution {
+    public int uniquePathsWithObstacles(int[][] obstaclegrid) {
+        int row = obstaclegrid.length;
+        int col = obstaclegrid[0].length;
+
+        int dp[][] = new int[row+1][col+1];
+
+        dp[1][0] = 1;
+
+        for(int i=1;i<=row;i++){
+            for(int j=1;j<=col;j++){
+                if(obstaclegrid[i-1][j-1] == 0)
+                dp[i][j] = dp[i][j-1] + dp[i-1][j];
+            }
+        }
+        return dp[row][col];
+    }
+}
